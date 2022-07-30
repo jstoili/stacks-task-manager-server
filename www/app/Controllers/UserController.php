@@ -65,14 +65,13 @@ class UserController extends BaseController
         }
 
         $options = [
-            'salt' => uniqid(mt_rand(), true),
             'cost' => 12
         ];
         
         helper('uuid');
         $userData->password = password_hash($userData->password, PASSWORD_DEFAULT, $options);
         $userData->id = uuid();
-        $userData->system = 1;
+        //$userData->system = 1;
 
         try {
             if ($userModel->insert($userData) === false) {
